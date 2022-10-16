@@ -26,5 +26,6 @@ jobs:
       - uses: actions/setup-go@v3
         with:
           go-version-file: 'go.mod'
+          cache: true
       - run: |
           go run ${{ matrix.target }}/main.go
