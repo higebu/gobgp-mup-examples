@@ -28,29 +28,17 @@ func main() {
 
 	// Generate Interwork Segment Discovery route
 	// https://www.ietf.org/archive/id/draft-mpmz-bess-mup-safi-01.html#name-generation-of-the-interwork
-	psid := &bgp.PathAttributePrefixSID{
-		TLVs: []bgp.PrefixSIDTLVInterface{
-			&bgp.SRv6L3ServiceAttribute{
-				SubTLVs: []bgp.PrefixSIDTLVInterface{
-					&bgp.SRv6InformationSubTLV{
-						SID:              netip.MustParseAddr("2001:db8::").AsSlice(),
-						Flags:            0,
-						EndpointBehavior: uint16(bgp.ENDM_GTP4E),
-						SubSubTLVs: []bgp.PrefixSIDTLVInterface{
-							&bgp.SRv6SIDStructureSubSubTLV{
-								LocalBlockLength:    32,
-								LocatorNodeLength:   16,
-								FunctionLength:      0,
-								ArgumentLength:      0,
-								TranspositionLength: 0,
-								TranspositionOffset: 0,
-							},
-						},
-					},
-				},
-			},
-		},
-	}
+	sid := netip.MustParsePrefix("2001:db8::/64")
+	psid := bgp.NewPathAttributePrefixSID(
+		bgp.NewSRv6ServiceTLV(
+			bgp.TLVTypeSRv6L3Service,
+			bgp.NewSRv6InformationSubTLV(
+				sid.Addr(),
+				bgp.ENDM_GTP4E,
+				bgp.NewSRv6SIDStructureSubSubTLV(uint8(sid.Bits()), uint8(sid.Bits()-16), 16, 0, 0, 0),
+			),
+		),
+	)
 	rt, err := bgp.ParseRouteTarget("65000:100")
 	if err != nil {
 		log.Fatal(err)

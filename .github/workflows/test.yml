@@ -1,0 +1,29 @@
+name: test
+
+on:
+  - push
+
+jobs:
+  set-targets:
+    runs-on: ubuntu-latest
+    outputs:
+      targets: ${{ steps.set-targets.outputs.targets }}
+    steps:
+      - uses: actions/checkout@v3
+      - id: set-targets
+        run: echo "::set-output name=targets::$(ls -d *_route | jq -R -s -c 'split("\n")[:-1]')"
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    needs: set-targets
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ${{ fromJson(needs.set-targets.outputs.targets ) }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version-file: 'go.mod'
+      - run: |
+          go run ${{ matrix.target }}/main.go
