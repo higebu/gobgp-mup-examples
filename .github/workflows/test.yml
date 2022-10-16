@@ -11,7 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: set-targets
-        run: echo "::set-output name=targets::$(ls -d *_route | jq -R -s -c 'split("\n")[:-1]')"
+        run: |
+          echo "targets=$(ls -d *_route | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
   test:
     name: test
     runs-on: ubuntu-latest
