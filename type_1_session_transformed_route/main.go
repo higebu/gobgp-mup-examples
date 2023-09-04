@@ -40,8 +40,9 @@ func main() {
 	}
 	rd, _ := bgp.ParseRouteDistinguisher("100:100")
 	prefix := netip.MustParsePrefix("192.168.0.1/24")
+	teid := netip.MustParseAddr("0.0.48.57")
 	ea := netip.MustParseAddr("10.0.0.1")
-	nlri := bgp.NewMUPType1SessionTransformedRoute(rd, prefix, 12345, 9, ea)
+	nlri := bgp.NewMUPType1SessionTransformedRoute(rd, prefix, teid, 9, ea)
 	path, err := apiutil.NewPath(nlri, false, attrs, time.Now())
 	if err != nil {
 		log.Fatal(err)

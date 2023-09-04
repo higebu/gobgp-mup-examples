@@ -41,7 +41,8 @@ func main() {
 	}
 	rd, _ := bgp.ParseRouteDistinguisher("100:100")
 	addr := netip.MustParseAddr("10.0.0.1")
-	nlri := bgp.NewMUPType2SessionTransformedRoute(rd, addr, 12345)
+	teid := netip.MustParseAddr("0.0.48.57")
+	nlri := bgp.NewMUPType2SessionTransformedRoute(rd, 64, addr, teid)
 	path, err := apiutil.NewPath(nlri, false, attrs, time.Now())
 	if err != nil {
 		log.Fatal(err)
