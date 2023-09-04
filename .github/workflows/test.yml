@@ -9,7 +9,7 @@ jobs:
     outputs:
       targets: ${{ steps.set-targets.outputs.targets }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - id: set-targets
         run: |
           echo "targets=$(ls -d *_route | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
@@ -22,7 +22,7 @@ jobs:
       matrix:
         target: ${{ fromJson(needs.set-targets.outputs.targets ) }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-go@v4
         with:
           go-version-file: 'go.mod'
