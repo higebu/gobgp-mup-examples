@@ -2,7 +2,7 @@ module github.com/higebu/gobgp-mup-examples
 
 go 1.19
 
-require github.com/osrg/gobgp/v3 v3.20.0
+require github.com/osrg/gobgp/v3 v3.21.0
 
 require (
 	github.com/dgryski/go-farm v0.0.0-20200201041132-a6ae2369ad13 // indirect
