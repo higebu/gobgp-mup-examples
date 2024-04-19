@@ -27,7 +27,7 @@ func main() {
 	defer s.StopBgp(ctx, &api.StopBgpRequest{})
 
 	// Generate Type 2 ST Route
-	// https://www.ietf.org/archive/id/draft-mpmz-bess-mup-safi-01.html#name-generation-of-the-type-2-st
+	// https://www.ietf.org/archive/id/draft-mpmz-bess-mup-safi-03.html#name-generation-of-the-type-2-st
 	rt, err := bgp.ParseRouteTarget("65000:100")
 	if err != nil {
 		log.Fatal(err)

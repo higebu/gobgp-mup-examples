@@ -27,7 +27,7 @@ func main() {
 	defer s.StopBgp(ctx, &api.StopBgpRequest{})
 
 	// Generate Type 1 ST Route
-	// https://www.ietf.org/archive/id/draft-mpmz-bess-mup-safi-01.html#name-generation-of-the-type-1-st
+	// https://www.ietf.org/archive/id/draft-mpmz-bess-mup-safi-03.html#name-generation-of-the-type-1-st
 	rt, err := bgp.ParseRouteTarget("65000:100")
 	if err != nil {
 		log.Fatal(err)
@@ -42,7 +42,8 @@ func main() {
 	prefix := netip.MustParsePrefix("192.168.0.1/24")
 	teid := netip.MustParseAddr("0.0.48.57")
 	ea := netip.MustParseAddr("10.0.0.1")
-	nlri := bgp.NewMUPType1SessionTransformedRoute(rd, prefix, teid, 9, ea)
+	sa := netip.MustParseAddr("10.0.0.2")
+	nlri := bgp.NewMUPType1SessionTransformedRoute(rd, prefix, teid, 9, ea, &sa)
 	path, err := apiutil.NewPath(nlri, false, attrs, time.Now())
 	if err != nil {
 		log.Fatal(err)

@@ -27,7 +27,7 @@ func main() {
 	defer s.StopBgp(ctx, &api.StopBgpRequest{})
 
 	// Generate Interwork Segment Discovery route
-	// https://www.ietf.org/archive/id/draft-mpmz-bess-mup-safi-01.html#name-generation-of-the-interwork
+	// https://www.ietf.org/archive/id/draft-mpmz-bess-mup-safi-03.html#name-generation-of-the-interwork
 	sid := netip.MustParsePrefix("2001:db8::/64")
 	psid := bgp.NewPathAttributePrefixSID(
 		bgp.NewSRv6ServiceTLV(

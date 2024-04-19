@@ -1,6 +1,6 @@
 # gobgp-mup-examples
 
-Examples for [BGP Extensions for the Mobile User Plane (MUP) SAFI](https://www.ietf.org/archive/id/draft-mpmz-bess-mup-safi-01.html) with using [gobgp](https://github.com/osrg/gobgp) as library.
+Examples for [BGP Extensions for the Mobile User Plane (MUP) SAFI](https://www.ietf.org/archive/id/draft-mpmz-bess-mup-safi-03.html) with using [gobgp](https://github.com/osrg/gobgp) as library.
 
 Official document of GoBGP as a Go Native BGP library is [here](https://github.com/osrg/gobgp/blob/master/docs/sources/lib.md).
 
