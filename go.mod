@@ -4,7 +4,7 @@ go 1.22.7
 
 toolchain go1.23.4
 
-require github.com/osrg/gobgp/v3 v3.32.0
+require github.com/osrg/gobgp/v3 v3.33.0
 
 require (
 	github.com/dgryski/go-farm v0.0.0-20200201041132-a6ae2369ad13 // indirect
