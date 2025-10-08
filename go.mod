@@ -2,7 +2,7 @@ module github.com/higebu/gobgp-mup-examples
 
 go 1.23.0
 
-toolchain go1.25.1
+toolchain go1.25.2
 
 require github.com/osrg/gobgp/v3 v3.37.0
 
