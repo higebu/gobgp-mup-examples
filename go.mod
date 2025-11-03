@@ -5,7 +5,7 @@ go 1.24.5
 toolchain go1.25.3
 
 require (
-	github.com/osrg/gobgp/v3 v3.37.0
+	github.com/osrg/gobgp/v4 v4.0.0
 	github.com/osrg/gobgp/v4 v4.0.0
 )
 
